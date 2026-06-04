@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Porozmawiamy? ❤️</title>
+
+<style>
+:root{
+    --bg1:#fff6f8;
+    --bg2:#ffe6ee;
+    --primary:#d6336c;
+    --primary-hover:#c2255c;
+    --text:#4b4b4b;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:linear-gradient(135deg,var(--bg1),var(--bg2));
+}
+
+.card{
+    width:100%;
+    max-width:680px;
+    background:#fff;
+    border-radius:28px;
+    padding:36px 24px;
+    box-shadow:0 20px 50px rgba(0,0,0,.08);
+    text-align:center;
+    animation:fadeIn .6s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.emoji{
+    font-size:48px;
+    margin-bottom:12px;
+}
+
+h1{
+    color:var(--primary);
+    font-size:clamp(2.2rem,7vw,3.5rem);
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:var(--text);
+    line-height:1.7;
+    margin-top:10px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    margin-top:30px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    border:none;
+    background:var(--primary);
+    color:white;
+    padding:14px 28px;
+    border-radius:999px;
+    cursor:pointer;
+    font-size:1rem;
+    transition:.25s;
+}
+
+.btn:hover{
+    background:var(--primary-hover);
+    transform:translateY(-2px);
+}
+
+#step2{
+    display:none;
+}
+
+.location{
+    margin:25px 0;
+    padding:18px;
+    border-radius:16px;
+    background:#fff1f5;
+    line-height:1.8;
+}
+
+.location a{
+    color:var(--primary);
+    text-decoration:none;
+    font-weight:600;
+}
+
+iframe{
+    width:100%;
+    height:260px;
+    border:0;
+    border-radius:18px;
+    margin-bottom:20px;
+}
+
+.form-group{
+    text-align:left;
+    margin-top:14px;
+}
+
+label{
+    display:block;
+    margin-bottom:6px;
+    color:#555;
+    font-weight:600;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:13px;
+    border:1px solid #e4e4e4;
+    border-radius:12px;
+    font-size:16px;
+}
+
+textarea{
+    resize:vertical;
+    min-height:100px;
+}
+
+.submit-btn{
+    width:100%;
+    margin-top:20px;
+}
+
+.success{
+    display:none;
+    animation:fadeIn .5s ease;
+}
+
+.success h2{
+    color:var(--primary);
+    margin-bottom:10px;
+}
+
+.success p{
+    color:var(--text);
+}
+
+@media(max-width:480px){
+
+    .card{
+        padding:30px 18px;
+    }
+
+    .buttons{
+        flex-direction:column;
+    }
+
+    .btn{
+        width:100%;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+```
+<div id="step1">
+
+    <div class="emoji">🌹</div>
+
+    <h1>Porozmawiamy?</h1>
+
+    <div class="buttons">
+        <button class="btn" onclick="showStep2()">
+            Tak 😊
+        </button>
+
+        <button class="btn" onclick="showStep2()">
+            Też tak 😊
+        </button>
+    </div>
+
+</div>
+
+<div id="step2">
+
+    <div class="emoji">❤️</div>
+
+    <p class="subtitle">
+        Cieszę się 😊<br>
+        Wybierz termin, który Ci odpowiada.
+    </p>
+
+    <div class="location">
+        📍 Miejsce spotkania
+        <br><br>
+
+        <a href="https://maps.app.goo.gl/k7Xs9dicf1FjybFS6"
+           target="_blank">
+            Otwórz lokalizację w Mapach Google
+        </a>
+    </div>
+
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d423.9517905758898!2d16.8415207450002!3d52.3498324055955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1spl!2spl!4v1780609067267!5m2!1spl!2spl"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+
+    <form id="meetingForm"
+          action="https://formspree.io/f/xbdelygp"
+          method="POST">
+
+        <div class="form-group">
+            <label for="data">Data</label>
+            <input
+                type="date"
+                id="data"
+                name="data"
+                required>
+        </div>
+
+        <div class="form-group">
+            <label for="godzina">Godzina</label>
+            <input
+                type="time"
+                id="godzina"
+                name="godzina"
+                required>
+        </div>
+
+        <div class="form-group">
+            <label for="wiadomosc">
+                Wiadomość (opcjonalnie)
+            </label>
+
+            <textarea
+                id="wiadomosc"
+                name="wiadomosc"
+                placeholder="Np. już nie mogę się doczekać 😊"></textarea>
+        </div>
+
+        <button
+            type="submit"
+            class="btn submit-btn">
+            Umów spotkanie 💌
+        </button>
+
+    </form>
+
+    <div id="successBox" class="success">
+        <div class="emoji">❤️</div>
+        <h2>Dziękuję, do zobaczenia ❤️</h2>
+        <p>Propozycja terminu została wysłana.</p>
+    </div>
+
+</div>
+```
+
+</div>
+
+<script>
+
+function showStep2(){
+    document.getElementById('step1').style.display='none';
+    document.getElementById('step2').style.display='block';
+}
+
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('data').min = today;
+
+const form = document.getElementById('meetingForm');
+
+form.addEventListener('submit', async (e) => {
+
+    e.preventDefault();
+
+    const response = await fetch(form.action,{
+        method:'POST',
+        body:new FormData(form),
+        headers:{
+            'Accept':'application/json'
+        }
+    });
+
+    if(response.ok){
+
+        form.style.display='none';
+        document.getElementById('successBox').style.display='block';
+
+    } else {
+
+        alert('Ups, coś poszło nie tak. Spróbuj ponownie.');
+
+    }
+});
+
+</script>
+
+</body>
+</html>
